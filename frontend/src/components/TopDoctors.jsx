@@ -14,27 +14,29 @@ const TopDoctors = () => {
       </p>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 pt-5">
-              {doctors.slice(0,10).map((item, index) => (
-                <div
-                  key={index}
-                  className="border border-blue-200 rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-md bg-white"
-                  onClick={() => navigate(`/appointments/${item._id}`)}
-                >
-                  <img
-                    className="w-full h-44 object-cover bg-blue-50"
-                    src={item.image}
-                    alt={item.name}
-                  />
-                  <div className="p-3">
-                    <div className="flex items-center gap-2 text-sm text-green-500 mb-1">
-                      <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                      <p>Available</p>
-                    </div>
-                    <p className="text-base font-semibold">{item.name}</p>
-                    <p className="text-sm text-gray-500">{item.speciality}</p>
-                  </div>
-                </div>
-              ))}
+           {Array.isArray(doctors) &&
+  doctors.slice(0, 10).map((item, index) => (
+    <div
+      key={item._id || index}
+      className="border border-blue-200 rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-md bg-white"
+      onClick={() => navigate(`/appointments/${item._id}`)}
+    >
+      <img
+        className="w-full h-44 object-cover bg-blue-50"
+        src={item.image}
+        alt={item.name}
+      />
+      <div className="p-3">
+        <div className="flex items-center gap-2 text-sm text-green-500 mb-1">
+          <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+          <p>Available</p>
+        </div>
+        <p className="text-base font-semibold">{item.name}</p>
+        <p className="text-sm text-gray-500">{item.speciality}</p>
+      </div>
+    </div>
+))}
+
             </div>
 
       <button
@@ -51,3 +53,4 @@ const TopDoctors = () => {
 };
 
 export default TopDoctors;
+
